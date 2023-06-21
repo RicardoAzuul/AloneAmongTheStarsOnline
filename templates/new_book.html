@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block book %}nav-item active{% endblock %}
+{% block content %}
+
+<!-- card from Bootstrap (https://getbootstrap.com/docs/4.6/components/card/), customized for this site -->
+<div class="card shadow p-3 mb-5 bg-white rounded" id="new-book-card">
+  <div class="card-header">
+    <h1 class="card-title text-center">Add A New Book</h1>
+  </div>
+  <div class="card-body text-left">
+    <!-- form from Bootstrap (https://getbootstrap.com/docs/4.6/components/forms/#overview, customized for this site) -->
+    <form method="POST" action="{{ url_for('new_book') }}">
+      <div class="form-group">
+        <div id="new-book-book-title-div">
+          <label for="booktitle"><i class="fas fa-book"></i> Book Title</label>
+          <input
+            type="text"
+            class="validate form-control"
+            id="booktitle"
+            name="booktitle"
+            required
+            placeholder="The Shining"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="authors"><i class="fas fa-feather"></i> Author(s)</label>
+        <input
+          type="text"
+          class="validate form-control"
+          id="authors"
+          name="authors"
+          required
+          placeholder="Stephen King"
+        />
+      </div>
+      <div class="form-group">
+        <label for="genreSelector"><i class="fas fa-theater-masks"></i> Select genre</label>
+        <select class="form-control" id="genreSelector" name="genreSelector" required >
+          {% for genre in genres %}
+            <option>{{genre.genreName}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cover-image"
+          ><i class="fas fa-image"></i>URL for Cover Image</label
+        >
+        <input
+          type="url"
+          class="validate form-control"
+          id="cover-image"
+          name="cover-image"
+          required
+          placeholder="https://images-na.ssl-images-amazon.com/images/I/91bjV4lqZpL.jpg"
+        />
+      </div>
+      <div class="form-group">
+        <label for="blurb"><i class="fas fa-file-alt"></i> Blurb</label>
+        <textarea
+          class="validate form-control"
+          id="blurb"
+          name="blurb"
+          required
+          placeholder="Jack Torrance's new job at the Overlook Hotel is the perfect chance for a fresh start. As the off-season caretaker at the atmospheric old hotel, he'll have plenty of time to spend reconnecting with his family and working on his writing. But as the harsh winter weather sets in, the idyllic location feels ever more remote...and more sinister. And the only one to notice the strange and terrible forces gathering around the Overlook is Danny Torrance, a uniquely gifted five-year-old. "
+        ></textarea>
+      </div>
+      <div class="d-flex">
+        <a href="{{ url_for('get_books') }}" class="btn btn-danger mr-auto"
+          >Cancel <i class="fas fa-times-circle"></i
+        ></a>
+        <button type="submit" class="btn btn-success" id="add-book-button">
+          Add Book <i class="fas fa-plus-circle"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

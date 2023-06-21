@@ -1,0 +1,181 @@
+* {
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+/* Main */
+main {
+  padding-top: 1em;
+  min-height: 90vh;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+#call-to-interaction {
+  padding-bottom: 1em;
+}
+
+/* Cards */
+.all-books-card {
+  width: 18rem;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 40vw;
+  object-fit: contain;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.card-footer {
+  text-align: center;
+}
+
+/* book.html */
+#book-card-subtitle {
+  margin-bottom: 1rem;
+}
+#book-reviews {
+  text-align: center;
+}
+
+/* new_book.html */
+#new-book-book-title-div {
+  margin-top: 0.5rem;
+}
+
+/* edit_review.html */
+.review-card-body {
+  text-align: left;
+}
+.div-book-title {
+  padding-bottom: 1.25rem;
+}
+
+/* admin_portal.html */
+#admin-card .card-body {
+  text-align: left;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  main {
+    padding-top: 2em;
+  } 
+  h1 {
+    margin-bottom: 1rem;
+  }
+  .card {
+    min-height: auto;
+    width: auto;
+  }  
+  .card-img-top {
+    height: 25vw;
+  }
+  .card-body {
+    text-align: left;
+    padding: 0rem;  
+  }
+  .card-title {
+    margin-bottom: 1rem;
+  }
+  .card-subtitle {
+    margin-bottom: 1rem;
+  }
+  #book-card {
+    width: 30rem;
+  }
+  #book-card-subtitle {
+    margin-top: 1rem;
+  }
+  #book-reviews {
+    text-align: left;
+  }
+  #book-card-col {
+    margin-top: 1rem;
+  }
+  #login-card, #register-card {
+    margin-left: 9rem;
+    width: 26rem;
+  }
+  #profile-card h2 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .div-book-title {
+    padding-top: 1.25rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  h1 {
+    font-size: 1.75rem;
+  }  
+  h2 {
+    font-size: 1.5rem;
+  }  
+  h3 {
+    font-size: 1.25rem;
+  }
+  .card-img-top {
+    height: 30vw;
+  }
+  .card-footer {
+    text-align: left;
+  }
+  .books-card-footer {
+    text-align: center;
+  }
+  #book-card .card-footer {
+    text-align: center;
+  }
+  #login-card, #register-card {
+    margin-left: 9rem;
+    width: 40rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 2rem;
+  }  
+  h2 {
+    font-size: 1.75rem;
+  }  
+  h3 {
+    font-size: 1.5rem;
+  }
+  .card-img-top {
+    height: 25vw;
+  }
+  .books-card-body {
+    text-align: center;
+    padding: 0rem;  
+  } 
+  .books-card-footer {
+    text-align: center;
+  }
+  #book-card {
+    width: 50rem;
+  }
+  #login-card, #register-card {
+    margin-left: 15rem;
+    width: 40rem;
+  }    
+}

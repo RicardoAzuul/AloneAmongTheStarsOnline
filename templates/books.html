@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block all_books %}nav-item active{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col">
+    <!-- card from Bootstrap (https://getbootstrap.com/docs/4.6/components/card/), customized for this site -->
+    <div class="card shadow p-3 mb-5 bg-white rounded" id="login-card">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h1 class="card-title">✦Alone Among the Stars✦</h1>
+        <h2 class="card-subtitle text-muted">By Takuma Okada | noroadhome.itch.io</h2>
+        <p class="card-text">A solo roleplaying game about exploring fantastic planets</p>
+        <p class="card-text">You are a solitary adventurer, hopping from planet to planet exploring. Each world has unique features for you to discover and record.</p>
+        <!-- form from Bootstrap (https://getbootstrap.com/docs/4.6/components/forms/#overview, customized for this site) -->
+        <form method="POST" action="{{ url_for('login') }}">
+          <button type="submit" class="btn btn-success" id="login-button">
+            Start travelling <i class="fas fa-space-shuttle"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <p class="text-center">
+          Want to create an account?
+          <a href="{{ url_for('register') }}">Register Your Account</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
