@@ -3,11 +3,12 @@ block content %}
 
 <!-- card from Bootstrap (https://getbootstrap.com/docs/4.6/components/card/), customized for this site -->
 <div class="card shadow p-3 mb-5 bg-white rounded" id="profile-card">
+  <img src="..." class="card-img-top" alt="...">
   <div class="card-header">
     <h1 class="text-center">{{ username}}'s Profile</h1>
   </div>
   <div class="card-body">
-    <h2 class="card-text">Books you've added:</h2>
+    <h2 class="card-text">Your saved travel logs:</h2>
     {% if books|length > 0 %}
     <table class="table">
       <tbody>
@@ -82,9 +83,10 @@ block content %}
       </tbody>
     </table>
     {% else %}
-    <p>You've not added any books yet!</p>
+    <p>You've not saved any travel logs yet!</p>
     {% endif %}
-    <h2 class="card-text">Reviews you've added:</h2>
+    <!-- Disabled: no reviews -->
+    <!-- <h2 class="card-text">Reviews you've added:</h2>
     {% if reviews|length > 0 %}
     <table class="table">
       <tbody>
@@ -160,7 +162,7 @@ block content %}
     </table>
     {% else %}
     <p>You've not added any reviews yet!</p>
-    {% endif %}
+    {% endif %} -->
   </div>
   <div class="card-footer">
     <div class="row">

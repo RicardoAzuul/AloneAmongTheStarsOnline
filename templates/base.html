@@ -30,7 +30,7 @@
   <body>
     <header>
       <!-- Navbar: from Bootstrap (https://getbootstrap.com/docs/4.6/components/navbar/) and adjusted to fit the site -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- # [] Change -->
         <a class="navbar-brand" href="{{ url_for('get_books') }}"><i class="fas fa-rocket"></i> Alone Among The Stars</a>
         <button
@@ -50,7 +50,10 @@
             <!-- # [] Change -->
             <li class="{% block all_books %}{% endblock %}">
               <a class="nav-link" href="{{ url_for('get_books') }}"
-                >Home <span class="sr-only">(current)</span></a>
+                ><i class="fas fa-globe-europe"></i> Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href=""><i class="fas fa-satellite-dish"></i> Other Travel Logs</a>
             </li>
             {% if session.user == "bookable_admin" %}
               <li class="{% block admin %}{% endblock %}">
@@ -60,14 +63,18 @@
                 <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
               </li>  
             {% elif session.user %}
-              <li class="{% block book %}{% endblock %}">
+            <!-- Disabled: no books -->
+              <!-- <li class="{% block book %}{% endblock %}">
                 <a class="nav-link" href="{{ url_for('new_book') }}">Add Book</a>
-              </li>
+              </li> -->
               <li class="{% block profile %}{% endblock %}">
-                <a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a>
+                <a class="nav-link" href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-user-astronaut"></i> Profile</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('about') }}">About</a>
               </li>
             {% else %}
               <li class="{% block login %}{% endblock %}">
@@ -76,9 +83,13 @@
               <li class="{% block register %}{% endblock %}">
                 <a class="nav-link" href="{{ url_for('register') }}">Register</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('about') }}">About</a>
+              </li>
             {% endif %}
           </ul>
-          <form class="form-inline" action="{{ url_for('search') }}" method="POST">
+          <!-- Disabled because there is no need for search -->
+          <!-- <form class="form-inline" action="{{ url_for('search') }}" method="POST">
             <input
               class="form-control"
               type="search"
@@ -90,7 +101,7 @@
               required
             />
             <button class="btn btn-success" type="submit">Search</button>
-          </form>
+          </form> -->
         </div>
       </nav>
     </header>
@@ -116,9 +127,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 bg-primary">
+    <footer class="footer mt-auto py-3 bg-dark">
       <div class="container">
-        <p class="text-center">
+        <p class="text-center text-white">
           <small>&copy; Copyright 2023, Richard Blaauw</small>
         </p>
       </div>

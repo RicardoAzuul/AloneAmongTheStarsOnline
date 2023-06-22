@@ -20,7 +20,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-
+# [] Probably not needed
 def imageFile(str):
     """
     function from
@@ -60,6 +60,14 @@ def login_required(func):
 def get_books():
     books = mongo.db.books.find()
     return render_template("books.html", books=books)
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/start_game")
+def start_game():
+    return render_template("game.html")
 
 # [] Change: we're not getting books from the database
 @app.route("/get_book/<book_id>")

@@ -1,19 +1,23 @@
 {% extends "base.html" %}
+<!-- [] Probable change this for active nav-item -->
 {% block all_books %}nav-item active{% endblock %}
 {% block content %}
 <div class="row">
   <div class="col">
     <!-- card from Bootstrap (https://getbootstrap.com/docs/4.6/components/card/), customized for this site -->
-    <div class="card shadow p-3 mb-5 bg-white rounded" id="login-card">
+    <div class="card shadow p-3 mb-5 bg-white rounded" id="about-card">
       <img src="..." class="card-img-top" alt="...">
       <div class="card-body">
-        <h1 class="card-title">✦Alone Among the Stars✦</h1>
-        <h2 class="card-subtitle text-muted">By Takuma Okada | noroadhome.itch.io</h2>
-        <p class="card-text">A solo roleplaying game about exploring fantastic planets</p>
+        <h1 class="card-title">About this webapp</h1>
+        <p class="card-text">This webapp is a way to play Alone Among The Stars in your browser.</p>
+        <p class="card-text">Alone Among The Stars is a solo roleplaying game about exploring fantastic planets</p>
         <p class="card-text">You are a solitary adventurer, hopping from planet to planet exploring. Each world has unique features for you to discover and record.</p>
+        <p class="card-text">Normally you'd flip cards and roll dice, but this webapp handles that for you.</p>
+        <p class="card-text">For each planet you discover one or more things: you will get suggestions on what you discover and how, but ultimately you record what you find.</p>
+        <p class="card-text">You can save a log of your travel and look at other people's logs, if they have shared them.</p>
         <!-- form from Bootstrap (https://getbootstrap.com/docs/4.6/components/forms/#overview, customized for this site) -->
-        <form method="POST" action="{{ url_for('start_game') }}">
-          <button type="submit" class="btn btn-success" id="start-button">
+        <form method="POST" action="{{ url_for('login') }}">
+          <button type="submit" class="btn btn-success" id="login-button">
             Start travelling <i class="fas fa-space-shuttle"></i>
           </button>
         </form>
@@ -22,6 +26,7 @@
 
     <div class="row">
       <div class="col">
+        <!-- [] Needs to be either log in or register -->
         <p class="text-center">
           Want to create an account?
           <a href="{{ url_for('register') }}">Register Your Account</a>
