@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block all_books %}nav-item active{% endblock %}
+{% block content %}
+<h1 class="text-center">Books Added By Our Users</h1>
+<div class="row row-cols-1">
+  {% for book in books %}
+  <div class="col-sm-6">
+    <div class="card mx-auto shadow mb-5 bg-white rounded all-books-card">
+      <div class="row">
+        <div class="col-sm-6 col-xl-12">
+          <img src="{{ book.coverImageURL }}" class="card-img-top img-fluid" alt="Cover for {{ book.title }}" />
+        </div>
+        <div class="col-sm-6 col-xl-12">
+          <div class="card-body books-card-body">
+            <h2 class="card-title">{{ book.title }}</h2>
+            <h3 class="card-subtitle text-muted">
+              Author(s): {{ book.authors }}
+            </h3>
+            <p class="card-text">Genre: {{ book.genre }}</p>
+            <p class="card-text">Number of reviews: {{ book.reviews|length }}</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card-footer books-card-footer">
+            <p class="card-text">Upvotes: <i class="fas fa-arrow-circle-up"></i> {{ book.upvotes }}</p>
+            <a href="{{ url_for('get_book', book_id=book._id) }}" class="btn btn-primary">More About This Book</a> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% if session.user %} {% else %}
+<div class="text-center" id="call-to-interaction">
+  Want to edit books?
+  <a href="{{ url_for('login') }}">Log In</a> or
+  <a href="{{ url_for('register') }}">Register</a>!
+</div>
+{% endif %} {% endblock %}

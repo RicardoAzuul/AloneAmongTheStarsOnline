@@ -11,12 +11,9 @@
         <h2 class="card-subtitle text-muted">By Takuma Okada | noroadhome.itch.io</h2>
         <p class="card-text">A solo roleplaying game about exploring fantastic planets</p>
         <p class="card-text">You are a solitary adventurer, hopping from planet to planet exploring. Each world has unique features for you to discover and record.</p>
-        <!-- form from Bootstrap (https://getbootstrap.com/docs/4.6/components/forms/#overview, customized for this site) -->
-        <form method="POST" action="{{ url_for('start_game') }}">
-          <button type="submit" class="btn btn-success" id="start-button">
-            Start travelling <i class="fas fa-space-shuttle"></i>
-          </button>
-        </form>
+        <a href="{{ url_for('start_game') }}"
+        class="btn btn-success"
+        >Start travelling <i class="fas fa-space-shuttle"></i></a>
       </div>
     </div>
 

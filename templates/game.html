@@ -4,19 +4,30 @@
 <div class="row">
   <div class="col">
     <!-- card from Bootstrap (https://getbootstrap.com/docs/4.6/components/card/), customized for this site -->
-    <div class="card shadow p-3 mb-5 bg-white rounded" id="login-card">
-      <img src="..." class="card-img-top" alt="...">
+    <div class="card shadow p-3 mb-5 bg-white rounded" id="game-card">
       <div class="card-body">
-        <h1 class="card-title">✦Alone Among the Stars✦</h1>
-        <h2 class="card-subtitle text-muted">By Takuma Okada | noroadhome.itch.io</h2>
-        <p class="card-text">A solo roleplaying game about exploring fantastic planets</p>
-        <p class="card-text">You are a solitary adventurer, hopping from planet to planet exploring. Each world has unique features for you to discover and record.</p>
-        <!-- form from Bootstrap (https://getbootstrap.com/docs/4.6/components/forms/#overview, customized for this site) -->
-        <form method="POST" action="{{ url_for('login') }}">
-          <button type="submit" class="btn btn-success" id="login-button">
-            Start travelling <i class="fas fa-space-shuttle"></i>
-          </button>
-        </form>
+        <h1 class="card-title">You come upon a new planet</h1>
+        <p class="card-text">Your discovery: living beings: people like or unlike you, fish,
+          dinosaurs, wolves, birds, giant insects, etc., </p>
+          <p class="card-text">The location: in a field taller than you.</p>
+          <p class="card-text">Random number: {{ random_number }}</p>
+          <p class="card-text">{{ discovered_how }}</p>
+          <div class="form-group">
+            <label for="discoverylog"><i class="fas fa-file-alt"></i> Discovery Log</label>
+            <textarea
+              class="validate form-control"
+              id="discoverylog"
+              name="discoverylog"
+              required
+              placeholder="Record a short description and your reaction in a few sentences "
+            ></textarea>
+          </div>          
+        <a href="{{ url_for('start_game') }}"
+        class="btn btn-success"
+        >Keep travelling <i class="fas fa-space-shuttle"></i></a>        
+        <a href="{{ url_for('get_books') }}" class="btn btn-danger mr-auto"
+        >Return home <i class="fas fa-times-circle"></i
+      ></a>
       </div>
     </div>
 

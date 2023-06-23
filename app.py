@@ -1,4 +1,5 @@
 import os
+import random
 import re
 import functools
 from flask import (
@@ -67,7 +68,33 @@ def about():
 
 @app.route("/start_game")
 def start_game():
-    return render_template("game.html")
+    deck_of_cards = https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
+    
+    import requests
+
+# URL to call
+url = "https://www.example.com"
+
+# Send an HTTP GET request
+response = requests.get(url)
+
+# Check if the request was successful (status code 200)
+if response.status_code == 200:
+    # Print the response content
+    print(response.text)
+else:
+    print("Request failed with status code:", response.status_code)
+
+
+    discovered_how = ""
+    random_number = random.randint(1, 6)
+    if random_number <= 2:
+        discovered_how = "It is arduous to get to."
+    elif random_number <= 4:
+        discovered_how = "You come upon it suddenly."
+    else:
+        discovered_how = "You spot it as you are resting."
+    return render_template("game.html", random_number=random_number, discovered_how=discovered_how)
 
 # [] Change: we're not getting books from the database
 @app.route("/get_book/<book_id>")
@@ -439,25 +466,25 @@ def edit_book(book_id):
     return render_template("edit_book.html", book=book, genres=genres)
 
 # [] Change
-@app.route("/adopt_book/<book_id>")
-@login_required
-def adopt_book(book_id):
-    """
-    Sets the user who clicks the Adopt Book button
-    as the new owner of the book.
+# @app.route("/adopt_book/<book_id>")
+# @login_required
+# def adopt_book(book_id):
+#     """
+#     Sets the user who clicks the Adopt Book button
+#     as the new owner of the book.
 
-    The addedByUser field on the book document is updated,
-    as well as the booksAdded array on the user document.
-    """
-    user_to_update = mongo.db.users.find_one({"username": session["user"]})
-    username = user_to_update.get("username")
-    mongo.db.books.update_one({"_id": ObjectId(book_id)}, {
-                              '$set': {'addedByUser': username}})
-    mongo.db.users.update_one(
-        user_to_update, {'$push': {'booksAdded': book_id}})
+#     The addedByUser field on the book document is updated,
+#     as well as the booksAdded array on the user document.
+#     """
+#     user_to_update = mongo.db.users.find_one({"username": session["user"]})
+#     username = user_to_update.get("username")
+#     mongo.db.books.update_one({"_id": ObjectId(book_id)}, {
+#                               '$set': {'addedByUser': username}})
+#     mongo.db.users.update_one(
+#         user_to_update, {'$push': {'booksAdded': book_id}})
 
-    flash("Book has been adopted !")
-    return redirect(url_for("get_book", book_id=book_id))
+#     flash("Book has been adopted !")
+#     return redirect(url_for("get_book", book_id=book_id))
 
 # [] Change
 @app.route("/upvote_book/<book_id>")

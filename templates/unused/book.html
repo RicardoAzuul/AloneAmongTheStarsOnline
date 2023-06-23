@@ -7,19 +7,6 @@
         <h1 class="text-center">{{ book.title }}</h1>
       </div>
       <div class="card-body">
-        {% if session.user %} {% if book.addedByUser == "" %}
-        <p class="card-text text-center alert alert-success" role="alert">
-          This book has no owner!
-        </p>
-        <p class="card-text text-center">
-          <a
-            href="{{ url_for('adopt_book', book_id=book._id) }}"
-            class="btn btn-success"
-          >
-            Adopt Book?
-          </a>
-        </p>
-        {% endif %} {% endif %}
         <h2 class="card-subtitle text-muted" id="book-card-subtitle">
           Author(s): {{ book.authors }}
         </h2>
