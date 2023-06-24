@@ -1,9 +1,10 @@
 import os
 import random
+import requests
 import re
 import functools
 from flask import (
-    Flask, flash, render_template,
+    Flask, flash, json, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -20,6 +21,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 
 mongo = PyMongo(app)
+
+deck_of_cards_api_url = "https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
 
 # [] Probably not needed
 def imageFile(str):
@@ -68,25 +71,21 @@ def about():
 
 @app.route("/start_game")
 def start_game():
-    deck_of_cards = https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1
-    
-    import requests
-
-# URL to call
-url = "https://www.example.com"
-
-# Send an HTTP GET request
-response = requests.get(url)
-
-# Check if the request was successful (status code 200)
-if response.status_code == 200:
-    # Print the response content
-    print(response.text)
-else:
-    print("Request failed with status code:", response.status_code)
-
-
     discovered_how = ""
+    response = ""
+    deck_retrieved = False
+    
+    # Get a deck of cards
+    response = requests.get(deck_of_cards_api_url)
+
+    if response.status_code == 200:
+        deck_retrieved = True
+        deck_id = json.loads(response.text)["deck_id"]
+        session["deck_id"] = deck_id
+    # Needs more error processing: game won't work without a deck
+    else:
+        deck_retrieved = False
+
     random_number = random.randint(1, 6)
     if random_number <= 2:
         discovered_how = "It is arduous to get to."
@@ -94,7 +93,41 @@ else:
         discovered_how = "You come upon it suddenly."
     else:
         discovered_how = "You spot it as you are resting."
-    return render_template("game.html", random_number=random_number, discovered_how=discovered_how)
+    return render_template("game.html", random_number=random_number, discovered_how=discovered_how, deck_retrieved=deck_retrieved, deck_id=deck_id)
+
+@app.route("/continue_game")
+def continue_game():
+    discovered_how = ""
+    response = ""
+    deck_id = session["deck_id"]
+    draw_count = 0
+    card_drawn = False
+
+    # Roll for number of discoveries: 1d6
+    draw_count = 1
+
+    # Get 1d6 cards from the deck
+    draw_from_deck_url = f"https://www.deckofcardsapi.com/api/deck/{deck_id}/draw/?count={draw_count}"
+    response = requests.get(draw_from_deck_url)
+
+    #  Keep track of how many cards: once all cards are finished, we go for a new planet
+
+    if response.status_code == 200:
+        card_drawn = True
+        card = json.loads(response.text)
+    # Needs more error processing: game won't work without a deck
+    else:
+        card_drawn = False
+
+    random_number = random.randint(1, 6)
+    if random_number <= 2:
+        discovered_how = "It is arduous to get to."
+    elif random_number <= 4:
+        discovered_how = "You come upon it suddenly."
+    else:
+        discovered_how = "You spot it as you are resting."
+    return render_template("game.html", random_number=random_number, discovered_how=discovered_how, card_drawn=card_drawn, card=card)
+
 
 # [] Change: we're not getting books from the database
 @app.route("/get_book/<book_id>")
