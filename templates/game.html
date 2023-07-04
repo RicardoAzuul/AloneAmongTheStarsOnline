@@ -7,14 +7,8 @@
     <div class="card shadow p-3 mb-5 bg-white rounded" id="game-card">
       <div class="card-body">
         <h1 class="card-title">You come upon a new planet</h1>
-        <p class="card-text">Deck retrieved: {{ deck_retrieved }}</p>
-        <p class="card-text">Deck id: {{ deck_id }}</p>
-        <p class="card-text">Card drawn: {{ card_drawn }}</p>
-        <p class="card-text">Card: {{ card }}</p>
-        <p class="card-text">Your discovery: living beings: people like or unlike you, fish,
-          dinosaurs, wolves, birds, giant insects, etc., </p>
-          <p class="card-text">The location: in a field taller than you.</p>
-          <p class="card-text">Random number: {{ random_number }}</p>
+        <p class="card-text">Your discovery: {{ discovery }} </p>
+          <p class="card-text">The location: {{ location }}</p>
           <p class="card-text">{{ discovered_how }}</p>
           <div class="form-group">
             <label for="discoverylog"><i class="fas fa-file-alt"></i> Discovery Log</label>

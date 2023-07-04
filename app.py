@@ -73,18 +73,34 @@ def about():
 def start_game():
     discovered_how = ""
     response = ""
+    number_of_discoveries = 0
     deck_retrieved = False
     
-    # Get a deck of cards
     response = requests.get(deck_of_cards_api_url)
 
     if response.status_code == 200:
         deck_retrieved = True
         deck_id = json.loads(response.text)["deck_id"]
         session["deck_id"] = deck_id
-    # Needs more error processing: game won't work without a deck
+    # [] Needs more error processing: game won't work without a deck
     else:
         deck_retrieved = False
+
+    # [] Add rolling for number of discoveries on planet
+    if deck_retrieved == False:
+        print("Error")
+    else:
+        number_of_discoveries = random.randint(1, 6)
+
+    # [] Add drawing card
+    if deck_retrieved ==  False:
+        print("Error")
+    else:
+        draw_card_url = f"https://www.deckofcardsapi.com/api/deck/{deck_id}/draw/?count=1"
+        response = requests.get(draw_card_url)
+        card = json.loads(response.text)["cards"]
+        discovery = json.loads(card.text)["value"]
+        location = json.loads(card.text)["suit"]
 
     random_number = random.randint(1, 6)
     if random_number <= 2:
@@ -93,7 +109,7 @@ def start_game():
         discovered_how = "You come upon it suddenly."
     else:
         discovered_how = "You spot it as you are resting."
-    return render_template("game.html", random_number=random_number, discovered_how=discovered_how, deck_retrieved=deck_retrieved, deck_id=deck_id)
+    return render_template("game.html", discovered_how=discovered_how, discovery=discovery, location=location)
 
 @app.route("/continue_game")
 def continue_game():
